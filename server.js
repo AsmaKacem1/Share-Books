@@ -11,5 +11,25 @@ app.get('/',(req,res,next)=>{
 
 })
 
+app.get('/contact',(req,res,next)=>{
+    res.render('contact')
+})
+
+app.get('/about',(req,res,next)=>{
+    res.render('about')
+})
+
+app.get('/books',(req,res,next)=>{
+    res.render('books')
+})
+
+app.get('/login',(req,res,next)=>{
+    res.render('login')
+})
+
+app.get('/register',(req,res,next)=>{
+    res.render('register')
+})
+
 
 app.listen(3000,()=>console.log('server running'))
