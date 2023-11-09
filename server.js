@@ -1,9 +1,15 @@
-const http= require('http')
+const express= require('express')
+const app=express()
+const path=require('path')
 
-const server = http.createServer((req,res)=>{
-    res.write("welcome")
-    res.write(" welcome")
-    res.end()
+app.use(express.static(path.join(__dirname,'assets')))
+app.set('view engine','ejs')
+app.set('views','views')
+
+app.get('/',(req,res,next)=>{
+    res.render('index')
+
 })
 
-server.listen(3000,()=>{console.log('server running')})
+
+app.listen(3000,()=>console.log('server running'))
