@@ -2,13 +2,20 @@ const express= require('express')
 const app=express()
 const path=require('path')
 
+const RouterHome=require('./routers/home.router')
+const RouterBook=require('./routers/book.router')
+
 app.use(express.static(path.join(__dirname,'assets')))
 app.set('view engine','ejs')
 app.set('views','views')
 
-app.get('/',(req,res,next)=>{
-    res.render('index')
+app.use('/',RouterHome)
+app.use('/',RouterBook)
 
+
+
+app.get('/details',(req,res,next)=>{
+    res.render('details')
 })
 
 app.get('/contact',(req,res,next)=>{
