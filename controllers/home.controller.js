@@ -1,7 +1,7 @@
-const homeModel=require('../models/home.model')
+const bookModel=require('../models/book.model')
 
 exports.threeBookController=(req,res,next)=>{
-    homeModel.getThreeBooks().then(books=> {
+    bookModel.getThreeBooks().then(books=> {
         res.render('index',{books:books})
     })
 

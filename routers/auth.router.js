@@ -1,0 +1,10 @@
+const authController=require('../controllers/auth.controller')
+const body=require('express').urlencoded({extended:true})
+const router=require('express').Router()
+
+
+router.get('/register',authController.getRegisterPage)
+router.post('/register',body,authController.postRegisterData)
+
+
+module.exports=router

@@ -1,7 +1,6 @@
 const mongoose=require('mongoose')
 
 var schemaBook=mongoose.Schema({
-    _id:String,
     title:String,
     description:String,
     author:String,
@@ -32,6 +31,24 @@ exports.getAllBooks=()=>{
 
 }
 
+exports.getOneBookDetails=(id)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        mongoose.connect(url).then(()=>{
+            return Book.findById(id)
+
+
+        }).then(books=>{
+            mongoose.disconnect()
+            resolve(books)
+
+
+        }).catch(err=>reject(err))
+    })
+
+}
+
 exports.getThreeBooks=()=>{
 
     return new Promise((resolve,reject)=>{
@@ -49,6 +66,7 @@ exports.getThreeBooks=()=>{
     })
 
 
-    
-    
 }
+
+    
+    
