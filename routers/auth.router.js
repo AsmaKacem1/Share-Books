@@ -6,5 +6,8 @@ const router=require('express').Router()
 router.get('/register',authController.getRegisterPage)
 router.post('/register',body,authController.postRegisterData)
 
+router.get('/login',authController.getLoginPage)
+router.post('/login',body,authController.postLoginData)
+
 
 module.exports=router

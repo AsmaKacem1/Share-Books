@@ -41,3 +41,34 @@ exports.registerFunctionModel=(name,email,password)=>{
 })
 
 }
+
+
+
+exports.loginFunctionModel=(email,password)=>{
+    return new Promise((resolve,reject)=>{
+        mongoose.connect(url).then(()=>{
+            return User.findOne({email:email})
+
+        }).then((user)=>{
+            if (user){
+                bcrypt.compare(password,user.password).then((verif)=>{
+                    if (verif){
+                        mongoose.disconnect()
+                        resolve(user._id)
+                    }else{
+                        mongoose.disconnect()
+                        reject('invalid password')
+                    }
+                })
+            }else{
+                mongoose.disconnect()
+                reject('user dont exist')
+            }
+
+        }).catch((err)=>{
+            reject(err)
+        })
+
+})
+
+}
