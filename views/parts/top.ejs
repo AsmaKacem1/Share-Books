@@ -38,16 +38,13 @@
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
+
+              <% if (verifUser) {%>
               <li class="nav-item">
                 <a class="nav-link" href="/books">All Books</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/about">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact Us</a>
-              </li>
 
+              <%} else { %>
               <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
               </li>
@@ -55,10 +52,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="/register">Register</a>
               </li>
+              <%}%>
+      
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
+              </li>
 
+
+              <% if (verifUser) {%>
               <form class="form-inline my-2 my-lg-0" method="post" action="/logout">
                 <button class="btn btn-danger" type="submit">Logout</button>
               </form>
+              <%}%>
 
 
             </ul>

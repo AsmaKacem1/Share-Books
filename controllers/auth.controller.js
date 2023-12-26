@@ -3,7 +3,7 @@ const body=require('express').urlencoded({extended:true})
 
 
 exports.getRegisterPage=(req,res,next)=>{
-    res.render('register')
+    res.render('register',{verifUser:req.session.userId})
 }
 
 exports.postRegisterData=(req,res,next)=>{
@@ -17,7 +17,7 @@ exports.postRegisterData=(req,res,next)=>{
 
 
 exports.getLoginPage=(req,res,next)=>{
-    res.render('login')
+    res.render('login',{verifUser:req.session.userId})
 }
 
 
