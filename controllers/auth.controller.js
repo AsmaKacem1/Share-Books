@@ -31,3 +31,11 @@ exports.postLoginData=(req,res,next)=>{
     
     
 }
+
+
+exports.logoutFunctionController=(req,res,next)=>{
+    req.session.destroy(()=>{
+        res.redirect('login')
+    })
+    
+}
