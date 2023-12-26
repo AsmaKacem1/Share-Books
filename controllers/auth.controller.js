@@ -2,22 +2,25 @@ const authModel=require('../models/auth.model')
 const body=require('express').urlencoded({extended:true})
 
 
+
 exports.getRegisterPage=(req,res,next)=>{
-    res.render('register',{verifUser:req.session.userId})
+    res.render('register',{verifUser:req.session.userId,message:req.flash('error')[0]})
 }
 
 exports.postRegisterData=(req,res,next)=>{
     authModel.registerFunctionModel(req.body.name,req.body.email,req.body.password).then((user)=>{
         res.redirect('/login')
-    }).catch((msg)=>{
-        console.log(msg)
+    }).catch((err)=>{
+        console.log(err)
+        req.flash('error',err)
+        res.redirect('/register')
     })
     
 }
 
 
 exports.getLoginPage=(req,res,next)=>{
-    res.render('login',{verifUser:req.session.userId})
+    res.render('login',{verifUser:req.session.userId,message:req.flash('error')[0]})
 }
 
 
@@ -26,7 +29,9 @@ exports.postLoginData=(req,res,next)=>{
         req.session.userId=id
         res.redirect('/')
     }).catch((err)=>{
+        req.flash('error',err)
         console.log(err)
+        res.redirect('/login')
     })
     
     

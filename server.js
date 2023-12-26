@@ -1,6 +1,7 @@
 const express= require('express')
 const app=express()
 const path=require('path')
+const flash=require('connect-flash')
 
 const RouterHome=require('./routers/home.router')
 const RouterBook=require('./routers/book.router')
@@ -12,6 +13,7 @@ const MongoDbStore=require('connect-mongodb-session')(session)
 app.use(express.static(path.join(__dirname,'assets')))
 app.set('view engine','ejs')
 app.set('views','views')
+app.use(flash())
 
 var Store=new MongoDbStore({
     uri: 'mongodb://127.0.0.1:27017/library',
@@ -35,13 +37,13 @@ app.use('/',RouterAuth)
 //     res.render('details')
 // })
 
-// app.get('/contact',(req,res,next)=>{
-//     res.render('contact')
-// })
+app.get('/contact',(req,res,next)=>{
+    res.render('contact',{verifUser:req.session.userId})
+})
 
-// app.get('/about',(req,res,next)=>{
-//     res.render('about')
-// })
+app.get('/about',(req,res,next)=>{
+    res.render('about',{verifUser:req.session.userId})
+})
 
 // app.get('/books',(req,res,next)=>{
 //     res.render('books')
