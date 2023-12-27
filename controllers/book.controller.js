@@ -27,3 +27,17 @@ exports.getOneBookDetailsController=(req,res,next)=>{
     })
 
 }
+
+exports.getAddBookController=(req,res,next)=>{
+    res.render('addbook',{verifUser:req.session.userId,Smessage:req.flash('Sucessmessage')[0],Emessage:req.flash('Errormessage')[0]})
+}
+
+exports.postAddBookController=(req,res,next)=>{
+    bookModel.postDataBookModel(req.body.title,req.body.description,req.body.author,req.body.price,req.file.filename,req.session.userId).then((msg)=>{
+        req.flash('Sucessmessage',msg)
+        res.redirect('/addbook')
+    }).catch((err)=>{
+        req.flash('Errormessage',err)
+        res.redirect('/addbook')
+    })
+}

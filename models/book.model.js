@@ -5,7 +5,8 @@ var schemaBook=mongoose.Schema({
     description:String,
     author:String,
     price:Number,
-    image:String
+    image:String,
+    userId:String
 
 })
 
@@ -69,4 +70,25 @@ exports.getThreeBooks=()=>{
 }
 
     
-    
+exports.postDataBookModel=(title,description,author,price,image,userId)=>{
+    return new Promise((resolve,reject)=>{
+        mongoose.connect(url).then(()=>{
+            let book=new Book({
+                title:title,
+                description:description,
+                author:author,
+                price:price,
+                image:image,
+                userId:userId
+            })
+            return book.save()
+        }).then(()=>{
+            mongoose.disconnect()
+            resolve('added!!')
+        }).catch((err)=>{
+            mongoose.disconnect()
+            console.log("nnnnnnok")
+            reject(err)
+        })
+    })
+}   
