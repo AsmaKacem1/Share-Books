@@ -41,3 +41,11 @@ exports.postAddBookController=(req,res,next)=>{
         res.redirect('/addbook')
     })
 }
+
+
+exports.getMyBooksController=(req,res,next)=>{
+    bookModel.getMyBooks(req.session.userId).then((books)=>{
+        res.render('mybooks',{mybooks:books,verifUser:req.session.userId})
+    })
+    
+}

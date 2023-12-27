@@ -92,3 +92,22 @@ exports.postDataBookModel=(title,description,author,price,image,userId)=>{
         })
     })
 }   
+
+
+exports.getMyBooks=(userId)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        mongoose.connect(url).then(()=>{
+            return Book.find({userId:userId})
+
+
+        }).then(books=>{
+            mongoose.disconnect()
+            resolve(books)
+
+
+        }).catch(err=>reject(err))
+    })
+
+}

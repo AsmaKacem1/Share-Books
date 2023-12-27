@@ -6,6 +6,7 @@ const flash=require('connect-flash')
 const RouterHome=require('./routers/home.router')
 const RouterBook=require('./routers/book.router')
 const RouterAuth=require('./routers/auth.router')
+const RouteMyBooks=require('./routers/mybooks.router')
 const session=require('express-session')
 const MongoDbStore=require('connect-mongodb-session')(session)
 
@@ -32,10 +33,8 @@ app.use(session({
 app.use('/',RouterHome)
 app.use('/books',RouterBook)
 app.use('/',RouterAuth)
+app.use('/mybooks',RouteMyBooks)
 
-// app.get('/details',(req,res,next)=>{
-//     res.render('details')
-// })
 
 app.get('/contact',(req,res,next)=>{
     res.render('contact',{verifUser:req.session.userId})
@@ -45,17 +44,9 @@ app.get('/about',(req,res,next)=>{
     res.render('about',{verifUser:req.session.userId})
 })
 
-// app.get('/books',(req,res,next)=>{
-//     res.render('books')
-// })
-
-// app.get('/login',(req,res,next)=>{
-//     res.render('login')
-// })
-
-// app.get('/register',(req,res,next)=>{
-//     res.render('register')
-// })
+app.get('/mybooks',(req,res,next)=>{
+    res.render('mybooks',{verifUser:req.session.userId})
+})
 
 
 app.listen(3000,()=>console.log('server running'))
