@@ -49,3 +49,12 @@ exports.getMyBooksController=(req,res,next)=>{
     })
     
 }
+
+exports.deleteMyBookController=(req,res,next)=>{
+    let id=req.params.id
+    bookModel.deleteMyBook(id).then((verif)=>{
+        res.redirect('/mybooks')
+    }).catch((err)=>{
+        console.log(err)
+    })
+}

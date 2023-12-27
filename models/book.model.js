@@ -111,3 +111,22 @@ exports.getMyBooks=(userId)=>{
     })
 
 }
+
+
+exports.deleteMyBook=(id)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        mongoose.connect(url).then(()=>{
+            return Book.deleteOne({_id:id})
+
+
+        }).then(books=>{
+            mongoose.disconnect()
+            resolve(true)
+
+
+        }).catch(err=>reject(err))
+    })
+
+}
