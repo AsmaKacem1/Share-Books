@@ -130,3 +130,36 @@ exports.deleteMyBook=(id)=>{
     })
 
 }
+
+exports.getUpdateBookModel=(id)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        mongoose.connect(url).then(()=>{
+            return Book.findById(id)
+
+
+        }).then(book=>{
+            mongoose.disconnect()
+            resolve(book)
+
+
+        }).catch(err=>reject(err))
+    })
+
+}
+
+
+exports.postUpdateBookModel=(id,title,description,author,price,image,userId)=>{
+    return new Promise((resolve,reject)=>{
+        mongoose.connect(url).then(()=>{
+            return Book.updateOne({_id:id},{title:title,description:description,author:author,price:price,image:image,userId:userId})
+        }).then(()=>{
+            mongoose.disconnect()
+            resolve('updated!!')
+        }).catch((err)=>{
+            mongoose.disconnect()
+            reject(err)
+        })
+    })
+}

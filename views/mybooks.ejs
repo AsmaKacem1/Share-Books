@@ -23,7 +23,8 @@
             <td><%= book.title %></td>
             <td><%= book.author %></td>
             <td>@<%= book.price %></td>
-            <td><button class="btn btn-primary">Update</button><a href="/mybooks/delete/<%= book._id%>" class="btn btn-danger">Delete</a></td>
+            <td><a href="/mybooks/update/<%= book._id%>" class="btn btn-primary">Update</a>
+                <a href="/mybooks/delete/<%= book._id%>" class="btn btn-danger">Delete</a></td>
             </tr>
             <%}%>
         </tbody>

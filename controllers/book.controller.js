@@ -58,3 +58,32 @@ exports.deleteMyBookController=(req,res,next)=>{
         console.log(err)
     })
 }
+
+exports.updateBookController=(req,res,next)=>{
+    let id=req.params.id
+    bookModel.getUpdateBookModel(id).then((book)=>{
+        res.render('updatebook',{myBook:book,verifUser:req.session.userId,Smessage:req.flash('Sucessmessage')[0],Emessage:req.flash('Errormessage')[0]})
+    })
+    
+}
+
+
+exports.postUpdateBookController=(req,res,next)=>{
+    if (req.file){
+        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.body.price,req.file.filename,req.session.userId).then((msg)=>{
+            req.flash('Sucessmessage',msg)
+            res.redirect(`/mybooks/update/${req.body.bookId}`)
+        }).catch((err)=>{
+            req.flash('Errormessage',err)
+            res.redirect(`/mybooks/update/${req.body.bookId}`)
+        })
+    }else{
+        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.body.price,req.body.oldImage,req.session.userId).then((msg)=>{
+            req.flash('Sucessmessage',msg)
+            res.redirect(`/mybooks/update/${req.body.bookId}`)
+        }).catch((err)=>{
+            req.flash('Errormessage',err)
+            res.redirect(`/mybooks/update/${req.body.bookId}`)
+        })
+    }
+}
