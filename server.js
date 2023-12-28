@@ -7,6 +7,8 @@ const RouterHome=require('./routers/home.router')
 const RouterBook=require('./routers/book.router')
 const RouterAuth=require('./routers/auth.router')
 const RouteMyBooks=require('./routers/mybooks.router')
+const RouteAbout=require('./routers/about.router')
+const RouteContact=require('./routers/contact.router')
 const session=require('express-session')
 const MongoDbStore=require('connect-mongodb-session')(session)
 
@@ -34,7 +36,8 @@ app.use('/',RouterHome)
 app.use('/books',RouterBook)
 app.use('/',RouterAuth)
 app.use('/mybooks',RouteMyBooks)
-
+app.use('/',RouteAbout)
+app.use('/',RouteContact)
 
 app.get('/contact',(req,res,next)=>{
     res.render('contact',{verifUser:req.session.userId})
