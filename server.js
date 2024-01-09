@@ -3,6 +3,7 @@ const app=express()
 const path=require('path')
 const flash=require('connect-flash')
 
+
 const RouterHome=require('./routers/home.router')
 const RouterBook=require('./routers/book.router')
 const RouterAuth=require('./routers/auth.router')
@@ -28,7 +29,6 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }))
-
 
 
 app.use('/',RouterHome)

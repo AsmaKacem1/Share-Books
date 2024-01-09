@@ -33,7 +33,7 @@ exports.getAddBookController=(req,res,next)=>{
 }
 
 exports.postAddBookController=(req,res,next)=>{
-    bookModel.postDataBookModel(req.body.title,req.body.description,req.body.author,req.body.price,req.file.filename,req.body.pdfLink,req.session.userId).then((msg)=>{
+    bookModel.postDataBookModel(req.body.title,req.body.description,req.body.author,req.file.filename,req.body.pdfLink,req.session.userId).then((msg)=>{
         req.flash('Sucessmessage',msg)
         res.redirect('/addbook')
     }).catch((err)=>{
@@ -70,7 +70,7 @@ exports.updateBookController=(req,res,next)=>{
 
 exports.postUpdateBookController=(req,res,next)=>{
     if (req.file){
-        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.body.price,req.file.filename,req.body.pdfLink,req.session.userId).then((msg)=>{
+        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.file.filename,req.body.pdfLink,req.session.userId).then((msg)=>{
             req.flash('Sucessmessage',msg)
             res.redirect(`/mybooks/update/${req.body.bookId}`)
         }).catch((err)=>{
@@ -78,7 +78,7 @@ exports.postUpdateBookController=(req,res,next)=>{
             res.redirect(`/mybooks/update/${req.body.bookId}`)
         })
     }else{
-        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.body.price,req.body.oldImage,req.body.pdfLink,req.session.userId).then((msg)=>{
+        bookModel.postUpdateBookModel(req.body.bookId,req.body.title,req.body.description,req.body.author,req.body.oldImage,req.body.pdfLink,req.session.userId).then((msg)=>{
             req.flash('Sucessmessage',msg)
             res.redirect(`/mybooks/update/${req.body.bookId}`)
         }).catch((err)=>{

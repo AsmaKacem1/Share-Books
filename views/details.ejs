@@ -12,8 +12,6 @@
       </div>
       <div class="col">
         <h1><%= book.title %></h1><h4> <%= book.author %></h4>
-        <span> <%= book.price %></span>
-       
         <p><%= book.description %></p>
 
         <% if (book.pdfLink) { %>
@@ -21,7 +19,7 @@
         <% } else { %>
           <p>No PDF available</p>
         <% } %>
-        
+
       </div>
     </div>
   </div>

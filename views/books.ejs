@@ -28,9 +28,13 @@
                           <a href="/books/<%= book._id %>" ><img style="height: 350px;" src="uploads/<%= book.image %>" alt=""></a>
                           <div class="down-content">
                             <a href="/books/<%= book._id %>" ><h4><%= book.title %></h4></a>
-                            <h6>$<%= book.price %></h6>
                             <p><%= book.description %></p>
-                            <p><a href="<%= book.pdfLink %>" download>Download PDF</a></p>
+                            <% if (book.pdfLink) { %>
+                              <p><a href="<%= book.pdfLink %>" download>Download PDF</a></p>
+                            <% } else { %>
+                              <p>No PDF available</p>
+                            <% } %>
+                            
                           </div>
                         </div>
                       </div>

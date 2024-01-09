@@ -4,7 +4,6 @@ var schemaBook=mongoose.Schema({
     title:String,
     description:String,
     author:String,
-    price:Number,
     image:String,
     pdfLink: String,
     userId:String
@@ -71,14 +70,13 @@ exports.getThreeBooks=()=>{
 }
 
     
-exports.postDataBookModel=(title,description,author,price,image,pdfLink,userId)=>{
+exports.postDataBookModel=(title,description,author,image,pdfLink,userId)=>{
     return new Promise((resolve,reject)=>{
         mongoose.connect(url).then(()=>{
             let book=new Book({
                 title:title,
                 description:description,
                 author:author,
-                price:price,
                 image:image,
                 pdfLink: pdfLink,
                 userId:userId
@@ -152,10 +150,10 @@ exports.getUpdateBookModel=(id)=>{
 }
 
 
-exports.postUpdateBookModel=(id,title,description,author,price,image,pdfLink,userId)=>{
+exports.postUpdateBookModel=(id,title,description,author,image,pdfLink,userId)=>{
     return new Promise((resolve,reject)=>{
         mongoose.connect(url).then(()=>{
-            return Book.updateOne({_id:id},{title:title,description:description,author:author,price:price,image:image,pdfLink:pdfLink,userId:userId})
+            return Book.updateOne({_id:id},{title:title,description:description,author:author,image:image,pdfLink:pdfLink,userId:userId})
         }).then(()=>{
             mongoose.disconnect()
             resolve('updated!!')
