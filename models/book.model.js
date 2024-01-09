@@ -80,7 +80,7 @@ exports.postDataBookModel=(title,description,author,price,image,pdfLink,userId)=
                 author:author,
                 price:price,
                 image:image,
-                pdfLink: String,
+                pdfLink: pdfLink,
                 userId:userId
             })
             return book.save()
