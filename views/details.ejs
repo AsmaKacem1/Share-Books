@@ -15,6 +15,13 @@
         <span> <%= book.price %></span>
        
         <p><%= book.description %></p>
+
+        <% if (book.pdfLink) { %>
+          <p><a href="<%= book.pdfLink %>" download>Download PDF</a></p>
+        <% } else { %>
+          <p>No PDF available</p>
+        <% } %>
+        
       </div>
     </div>
   </div>
