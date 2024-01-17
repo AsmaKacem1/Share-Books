@@ -1,0 +1,1 @@
+Developed a Shared Library website using HTML, CSS, JavaScript, and Node.js, employing MVC architecture for efficient management. Specialized in server-side rendering (SSR) to enhance performance and SEO. The project focused on encouraging book sharing to foster a reading culture.
